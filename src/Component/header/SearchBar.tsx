@@ -25,7 +25,7 @@ const SearchBar = (props: {
                 placeholder="Rechercher"
                 inputProps={{ 'aria-label': 'search google maps' }}
                 endAdornment={
-                    <Button variant="contained" color="primary" sx={{ height: '100%' }} onClick={searchClient}>
+                    <Button variant="contained" color="primary" sx={{ height: '100%' }}>
                         <SearchIcon />
                     </Button>
                 }

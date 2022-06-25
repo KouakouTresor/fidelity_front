@@ -11,7 +11,7 @@ class ClientsService {
 
     getClientByCode = (param: string) => {
         /* onst params = new URLSearchParams(param); */
-        return axios.get(`${Api.Server}${Api.BaseUrl}/search_fcode/67800099`, {
+        return axios.get(`${Api.Server}${Api.BaseUrl}/search_fcode/${param}`, {
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Content-Type': 'application/json',

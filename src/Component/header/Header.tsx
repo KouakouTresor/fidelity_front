@@ -38,7 +38,6 @@ const Header = (): ReactElement => {
                                     return <ListItem key={index}>{menu.label}</ListItem>;
                                 })}
                             </List>
-                            <SearchBar />
                             <Button sx={{ marginLeft: 'auto' }} variant="contained">
                                 Login
                             </Button>

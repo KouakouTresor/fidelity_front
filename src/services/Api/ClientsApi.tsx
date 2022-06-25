@@ -1,21 +1,23 @@
 import axios from 'axios';
 const Api = {
-    Server: "http://localhost:8080",
-    BaseUrl: "/api/clients"
-}
-
-class ClientsService{
- getAllClients = () => {
-   return axios(`${Api.Server}${Api.BaseUrl}/search_all`)
+    Server: 'http://localhost:8080',
+    BaseUrl: '/api/clients',
 };
 
- getClientByCode = (code: string) => {
-    fetch(`${Api.Server}${Api.BaseUrl}/search_fcode/${code}`)
-        .then((res) => {
-            res.json();
-        })
-        .catch((err) => console.log(err));
-};
+class ClientsService {
+    getAllClients = () => {
+        return axios(`${Api.Server}${Api.BaseUrl}/search_all`);
+    };
+
+    getClientByCode = (param: string) => {
+        /* onst params = new URLSearchParams(param); */
+        return axios.get(`${Api.Server}${Api.BaseUrl}/search_fcode/67800099`, {
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Content-Type': 'application/json',
+            },
+        });
+    };
 }
 
 export default new ClientsService();

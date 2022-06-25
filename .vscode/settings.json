@@ -1,3 +1,9 @@
 {
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "audioCues.lineHasBreakpoint": "off",
+    "audioCues.lineHasError": "off",
+    "audioCues.lineHasFoldedArea": "off",
+    "keyboard.touchbar.enabled": true,
+    "audioCues.noInlayHints": "off",
+    "audioCues.onDebugBreak": "off"
 }

@@ -1,4 +1,12 @@
-import React, { ChangeEvent, ReactElement, useEffect, useState } from 'react';
+import React, {
+    ChangeEvent,
+    FormEvent,
+    FormEventHandler,
+    ReactElement,
+    ReactEventHandler,
+    useEffect,
+    useState,
+} from 'react';
 import { Box, Button, IconButton } from '@mui/material';
 import ClientsService from '../services/Api/ClientsApi';
 import { DataGrid, GridColDef, GridValueGetterParams } from '@material-ui/data-grid';
@@ -6,11 +14,11 @@ import { RiDeleteBinLine, RiEditLine } from 'react-icons/ri';
 import SearchBar from './header/SearchBar';
 import { useNavigate } from 'react-router-dom';
 import { CLIENTS } from '../services/routesPath';
+import { ConstructionOutlined } from '@mui/icons-material';
 
 const ClientsList = (): ReactElement => {
     const [clients, setClients] = useState([] as any[]);
     const [search, setSearch] = useState('');
-    const [codeClient, setCodeClient] = useState();
     let navigate = useNavigate();
 
     //https://stackoverflow.com/questions/61495714/typescript-property-title-does-not-exist-on-type-never
@@ -25,19 +33,49 @@ const ClientsList = (): ReactElement => {
         });
     };
 
-    const searchClient = (codeClient: string) => {
-        /*         console.log(navigate(`${CLIENTS}/${codeClient}`)); */
-        ClientsService.getClientByCode(codeClient).then((response) => {
-            /*        setClients([]); */
-            console.log(codeClient);
-            setCodeClient(response.data);
-        });
+    const onChange = (event: ChangeEvent<HTMLInputElement>) => {
+        const { value } = event.target;
+        setSearch(value);
     };
 
-    const onChange = (event: ChangeEvent<HTMLInputElement>) => {
-        event.preventDefault();
-        setSearch(event.target.value);
+    useEffect(() => {
+        heandleSearch(search);
+    }, [search]);
+
+    const heandleSearch = async (codeClient: string) => {
+        const trimmedCodeClient = codeClient.trim();
+        await ClientsService.getClientByCode(trimmedCodeClient)
+            .then((response) => {
+                const clearArray: any[] = [];
+                clearArray.push(response.data);
+                setClients(clearArray);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
     };
+
+    const deleteClient = (id: string) => {
+        const newId = '62b48395e437025da519b287';
+        const elementIds = () => {};
+        console.log(
+            clients.find((element) => {
+                return element.id === newId;
+            }),
+        );
+        ClientsService.deleteClient(id)
+            .then((response) => {
+                console.log(response.data);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
+
+    const onClearSearchBar = () => {
+        setSearch('');
+    };
+
     const randomIndex = Math.random();
     const random = Math.random() * 1000;
     const columns: GridColDef[] = [
@@ -74,8 +112,23 @@ const ClientsList = (): ReactElement => {
                 <Button color="primary" variant="outlined">
                     nouveau client
                 </Button>
-                <SearchBar onChange={onChange} valueSearched={search} searchClient={searchClient}></SearchBar>
+                <SearchBar
+                    onChange={onChange}
+                    onSubmit={heandleSearch}
+                    valueSearched={search}
+                    onClearSearchBar={onClearSearchBar}
+                ></SearchBar>
             </Box>
+
+            <Button
+                onClick={(e) => {
+                    e.preventDefault();
+                    deleteClient('11111');
+                }}
+            >
+                cd
+            </Button>
+
             <Box sx={{ height: 400, margin: '80px', marginTop: '50px' }}>
                 <DataGrid
                     rows={clients}

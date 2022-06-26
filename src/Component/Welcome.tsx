@@ -9,7 +9,6 @@ const Welcome = (): ReactElement => {
     const theme = useTheme();
 
     const getName = (name: string) => {
-        console.log(name);
         return getDemoNameApi(name);
     };
     return (

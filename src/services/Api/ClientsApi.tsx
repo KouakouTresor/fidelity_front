@@ -10,13 +10,16 @@ class ClientsService {
     };
 
     getClientByCode = (param: string) => {
-        /* onst params = new URLSearchParams(param); */
         return axios.get(`${Api.Server}${Api.BaseUrl}/search_fcode/${param}`, {
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Content-Type': 'application/json',
             },
         });
+    };
+
+    deleteClient = (param: string) => {
+        return axios.delete(`${Api.Server}${Api.BaseUrl}/delete/${param}`);
     };
 }
 

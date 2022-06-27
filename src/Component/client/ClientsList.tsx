@@ -8,17 +8,18 @@ import React, {
     useState,
 } from 'react';
 import { Box, Button, IconButton } from '@mui/material';
-import ClientsService from '../services/Api/ClientsApi';
+import ClientsService from '../../services/Api/ClientsApi';
 import { DataGrid, GridColDef, GridValueGetterParams } from '@material-ui/data-grid';
 import { RiDeleteBinLine, RiEditLine } from 'react-icons/ri';
-import SearchBar from './header/SearchBar';
+import SearchBar from '../header/SearchBar';
 import { useNavigate } from 'react-router-dom';
-import { CLIENTS } from '../services/routesPath';
+import { CLIENTS } from '../../services/routesPath';
 import { ConstructionOutlined } from '@mui/icons-material';
 
 const ClientsList = (): ReactElement => {
     const [clients, setClients] = useState([] as any[]);
     const [search, setSearch] = useState('');
+    const [openDialog, setOpenDialog] = useState(false);
     let navigate = useNavigate();
 
     //https://stackoverflow.com/questions/61495714/typescript-property-title-does-not-exist-on-type-never
@@ -49,6 +50,7 @@ const ClientsList = (): ReactElement => {
                 const clearArray: any[] = [];
                 clearArray.push(response.data);
                 setClients(clearArray);
+                console.log(clients);
             })
             .catch((err) => {
                 console.log(err);
@@ -74,6 +76,14 @@ const ClientsList = (): ReactElement => {
 
     const onClearSearchBar = () => {
         setSearch('');
+    };
+
+    const handleClickOpen = () => {
+        setOpenDialog(true);
+    };
+
+    const handleClose = () => {
+        setOpenDialog(false);
     };
 
     const randomIndex = Math.random();

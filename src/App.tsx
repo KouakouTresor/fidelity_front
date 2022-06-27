@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import LoginForm from './Component/LoginForm';
+import LoginForm from './Component/auth/LoginForm';
 import { CLIENTS, LOGIN, WELCOME } from './services/routesPath';
-import ClientsList from './Component/ClientsList';
-import Welcome from './Component/Welcome';
+import ClientsList from './Component/client/ClientsList';
+
 import Header from './Component/header/Header';
+import Welcome from './Component/auth/Welcome';
 function App() {
     const login = {
         userid: '',

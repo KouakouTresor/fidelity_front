@@ -1,9 +1,9 @@
 import { Box, Button, Typography, useTheme } from '@mui/material';
 import React, { ReactElement } from 'react';
-import { getDemoApi, getDemoNameApi } from '../services/demo';
-import ClientsList from './ClientsList';
-import { CLIENTS } from '../services/routesPath';
+
 import { Link } from 'react-router-dom';
+import { getDemoNameApi } from '../../services/demo';
+import { CLIENTS } from '../../services/routesPath';
 
 const Welcome = (): ReactElement => {
     const theme = useTheme();

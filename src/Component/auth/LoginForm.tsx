@@ -1,15 +1,11 @@
-import { ThemeContext, useTheme } from '@emotion/react';
+import React, { ReactElement } from 'react';
 import { Label } from '@mui/icons-material';
 import { Grid, Paper, Avatar, TextField, Button, Typography, Checkbox, FormControlLabel } from '@mui/material';
-import React, { ReactElement, useState } from 'react';
-import { CLIENTS, WELCOME } from '../services/routesPath';
-import { Link } from 'react-router-dom';
 
-import InputComponent from './InputComponent';
+import { Link } from 'react-router-dom';
+import { WELCOME } from '../../services/routesPath';
 
 const LoginForm = (props: { user: any }): ReactElement => {
-    const theme = useTheme();
-
     return (
         <Grid>
             <Paper elevation={10} sx={{ padding: 10, width: 280, margin: '0 auto', marginTop: '150px' }}>

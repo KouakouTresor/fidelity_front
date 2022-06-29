@@ -1,12 +1,4 @@
-import React, {
-    ChangeEvent,
-    FormEvent,
-    FormEventHandler,
-    ReactElement,
-    ReactEventHandler,
-    useEffect,
-    useState,
-} from 'react';
+import React, { ChangeEvent, ReactElement, useEffect, useState } from 'react';
 import { Box, Button, IconButton } from '@mui/material';
 import ClientsService from '../../services/Api/ClientsApi';
 import { DataGrid, GridColDef, GridValueGetterParams } from '@material-ui/data-grid';
@@ -135,9 +127,7 @@ const ClientsList = (): ReactElement => {
                     e.preventDefault();
                     deleteClient('11111');
                 }}
-            >
-                cd
-            </Button>
+            ></Button>
 
             <Box sx={{ height: 400, margin: '80px', marginTop: '50px' }}>
                 <DataGrid

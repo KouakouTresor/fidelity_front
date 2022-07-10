@@ -28,7 +28,7 @@ const Header = (): ReactElement => {
                         </>
                     ) : (
                         <>
-                            <List
+                            {/*  <List
                                 component="nav"
                                 sx={{
                                     display: 'flex',
@@ -37,13 +37,7 @@ const Header = (): ReactElement => {
                                 {menu.map((menu, index) => {
                                     return <ListItem key={index}>{menu.label}</ListItem>;
                                 })}
-                            </List>
-                            <Button sx={{ marginLeft: 'auto' }} variant="contained">
-                                Login
-                            </Button>
-                            <Button sx={{ marginLeft: '10px' }} variant="contained">
-                                SignUp
-                            </Button>
+                            </List> */}
                         </>
                     )}
                 </Toolbar>

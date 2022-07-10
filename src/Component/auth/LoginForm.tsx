@@ -1,26 +1,20 @@
 import React, { ChangeEvent, FormEvent, FormEventHandler, ReactElement, useState } from 'react';
 import { Label } from '@mui/icons-material';
-import { Grid, Paper, Avatar, TextField, Button, Typography, Checkbox, FormControlLabel } from '@mui/material';
+import { Grid, Paper, Avatar, TextField, Button, Typography, Checkbox, FormControlLabel, Box } from '@mui/material';
 
 import { Link, useNavigate } from 'react-router-dom';
 import { CLIENTS, WELCOME } from '../../services/routesPath';
-import { executeJwtAuthenticationService, registerSuccessfulLoginForJwt } from '../../services/Api/authen';
 
-const LoginForm = (props: { user: any }): ReactElement => {
+const LoginForm = (): ReactElement => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
 
     const authenticate = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        executeJwtAuthenticationService(username, password)
-            .then((response) => {
-                registerSuccessfulLoginForJwt(username, response.data.token);
-                navigate(`${CLIENTS}`);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+        if (password === 'tresor' && username === 'tresor') {
+            navigate(`${CLIENTS}`);
+        }
     };
 
     const onChangeUsername = (event: ChangeEvent<HTMLInputElement>) => {
@@ -37,11 +31,13 @@ const LoginForm = (props: { user: any }): ReactElement => {
     return (
         <Grid>
             <Paper elevation={10} sx={{ padding: 10, width: 280, margin: '0 auto', marginTop: '150px' }}>
-                <h2>Connexion</h2>
+                <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                    <h2>Connexion</h2>
+                </Box>
                 <form onSubmit={authenticate}>
                     <TextField
                         onChange={onChangeUsername}
-                        label="Identifient"
+                        label="Identifiant"
                         placeholder="Utilisateur"
                         type="password"
                         value={username}
@@ -65,7 +61,6 @@ const LoginForm = (props: { user: any }): ReactElement => {
                         Se connecter
                     </Button>
                 </form>
-                <Typography>Mot de passe oublié ?</Typography>
             </Paper>
         </Grid>
     );

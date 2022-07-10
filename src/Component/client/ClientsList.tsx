@@ -132,11 +132,10 @@ const ClientsList = (): ReactElement => {
         },
     ];
 
-    console.log(clients);
     return (
         <Box>
             <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-                <h2 color="primary">Liste des client Fidelity</h2>
+                <h2 color="primary">Liste des clients Fidelity</h2>
             </Box>
 
             <Box sx={{ display: 'flex', paddingRight: '80px', paddingLeft: '80px', justifyContent: 'space-between' }}>

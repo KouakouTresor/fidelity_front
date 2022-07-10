@@ -11,7 +11,6 @@ import CloseIcon from '@mui/icons-material/Close';
 import Typography from '@mui/material/Typography';
 import { OutlinedInput } from '@mui/material';
 import FormikForm from './FormikForm';
-import { DELETE_CLIENT } from '../../services/routesPath';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     '& .MuiDialogContent-root': {
@@ -51,7 +50,7 @@ BootstrapDialogTitle.propTypes = {
     onClose: PropTypes.func.isRequired,
 };
 
-export default function CreateClient() {
+export default function DeleteClient() {
     const [open, setOpen] = React.useState(false);
 
     const handleClickOpen = () => {
@@ -64,15 +63,29 @@ export default function CreateClient() {
     return (
         <div>
             <Button variant="outlined" onClick={handleClickOpen}>
-                Nouveau client
+                Suppression du client
             </Button>
             <BootstrapDialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
                 <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
-                    Insérer un nouveau client
+                    Êst-vous sur de vouloir supprimer ce client?
                 </BootstrapDialogTitle>
                 <DialogContent dividers>
                     <FormikForm />
+                    {/*   <OutlinedInput autoComplete="off" fullWidth />
+                    <OutlinedInput autoComplete="off" fullWidth />
+                    <OutlinedInput autoComplete="off" fullWidth />
+                    <OutlinedInput autoComplete="off" fullWidth />
+                    <OutlinedInput autoComplete="off" fullWidth />
+                    <OutlinedInput autoComplete="off" fullWidth /> */}
                 </DialogContent>
+                <DialogActions>
+                    <Button autoFocus onClick={handleClose}>
+                        Annuler
+                    </Button>
+                    <Button autoFocus onClick={handleClose}>
+                        Sauver
+                    </Button>
+                </DialogActions>
             </BootstrapDialog>
         </div>
     );

@@ -1,12 +1,23 @@
 import axios from 'axios';
+import { string } from 'yup/lib/locale';
 const Api = {
     Server: 'http://localhost:8080',
-    BaseUrl: '/api/clients',
+    BaseUrl: '/clients',
 };
 
+interface MyFormValues {
+    code: string;
+    name: string;
+    adress: string;
+    ville: string;
+    phone: string;
+    email: string;
+    dateCreation: string;
+    fidelity: number;
+}
 class ClientsService {
     getAllClients = () => {
-        return axios(`${Api.Server}${Api.BaseUrl}/search_all`);
+        return axios(`${Api.Server}${Api.BaseUrl}`);
     };
 
     getClientByCode = (param: string) => {
@@ -16,6 +27,14 @@ class ClientsService {
                 'Content-Type': 'application/json',
             },
         });
+    };
+
+    createClient = (client: MyFormValues) => {
+        return axios.post(`${Api.Server}${Api.BaseUrl}/post`);
+    };
+
+    update = (param: string) => {
+        return axios.put(`${Api.Server}${Api.BaseUrl}/id/${param}`);
     };
 
     deleteClient = (param: string) => {
